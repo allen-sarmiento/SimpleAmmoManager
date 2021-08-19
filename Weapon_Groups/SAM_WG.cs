@@ -50,12 +50,6 @@ namespace SimpleAmmoManager.Weapon_Groups
 
         public void addWeapon(string wHash)
         {
-            /*
-            tempList = nListItem.Items;
-            tempList.Add(GetDisplayName(wHash));
-            nListItem.Items = tempList;
-            tempList.Clear();
-            */
             tempList.Add(GetDisplayName(wHash));
         }
 

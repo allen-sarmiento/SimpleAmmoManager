@@ -30,11 +30,6 @@ namespace SimpleAmmoManager
         // Pool
         public static ObjectPool pool = new ObjectPool();
 
-        // Weapon Groups
-        public static readonly List<WeaponGroup> SAM_WeaponGroups = new List<WeaponGroup>()
-        { WeaponGroup.AssaultRifle, WeaponGroup.Heavy, WeaponGroup.MG, WeaponGroup.Pistol, WeaponGroup.Shotgun,
-          WeaponGroup.SMG, WeaponGroup.Sniper, WeaponGroup.Thrown, WeaponGroup.FireExtinguisher, WeaponGroup.PetrolCan};
-
         // Menus
         public static NativeMenu mainMenu = new NativeMenu("Ammo Manager", "Main Menu");
         public static NativeMenu aboutMod_sMenu = new NativeMenu("Ammo Manager", "About Mod", "Settings, Author, Version");

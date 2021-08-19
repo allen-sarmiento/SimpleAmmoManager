@@ -32,12 +32,6 @@ namespace SimpleAmmoManager
         public static Keys menuToggle;
         public static int defaultSetAmmoAmt;
 
-        
-
-        public static readonly List<string> SAM_WeaponGroup_Names = new List<string>()
-        { "Assault Rifle", "Fire Extinguisher", "Heavy", "MG", "Jerry Can",
-          "Pistol", "Shotgun", "SMG", "Sniper", "Throwables"};
-
         public SAM_Script()
         {
             // Important script stuff
