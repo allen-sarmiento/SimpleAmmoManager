@@ -1,0 +1,59 @@
+﻿using System;
+using System.Windows.Forms;
+
+using GTA;
+
+/**
+ * List of References added:
+ *      - ScriptHookVDotNet3
+ *      - NativeUI
+ *      - System.Windows.Forms
+ *      - System.Drawing
+ */
+
+namespace SimpleAmmoManager
+{
+    public class Main : Script
+    {
+        ScriptSettings config;
+        Keys toggleMenu;
+        public static int setAmmoDefaultAmt;
+
+        public static string MOD_VERSION
+        {
+            get
+            {
+                return "1.0.0";
+            }
+        }
+
+        public Main()
+        {
+            Menu.initializeMenu();
+
+            Tick += onTick;
+            KeyDown += onKeyDown;
+
+            Menu.listener();
+
+            config = ScriptSettings.Load("scripts\\SimpleAmmoManager.ini");
+            toggleMenu = config.GetValue<Keys>("Options", "Menu Toggle Key", Keys.F11);
+            setAmmoDefaultAmt = config.GetValue<int>("Options", "Set Ammo Default Amount", 100);
+        }
+
+        private void onTick(object sender, EventArgs e)
+        {
+            if (Menu.menuPool != null && Menu.menuPool.IsAnyMenuOpen())
+            {
+                Menu.menuPool.ProcessMenus();
+            }
+        }
+        private void onKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == toggleMenu)
+            {
+                Menu.mainMenu.Visible = !Menu.mainMenu.Visible;
+            }
+        }
+    }
+}
