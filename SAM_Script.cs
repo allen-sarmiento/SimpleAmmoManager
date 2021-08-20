@@ -15,8 +15,9 @@ using SimpleAmmoManager.Weapon_Groups;
 
 /**
  * Notes:
- * - Musket is grouped as "Sniper" but occupies the Shotgun slot.
+ * - Musket is grouped as "Sniper" but occupies the Shotgun slot. [v]
  * - Exiting out of menu with 'Esc' opens in-game menu
+ * - Ball under throwables
  */
 
 namespace SimpleAmmoManager
@@ -52,6 +53,8 @@ namespace SimpleAmmoManager
                 SAM_UI.initUI();
                 SAM_WG.init();
             }
+
+            SAM_UI.update();
         }
         private void onTick(object sender, EventArgs e)
         {
@@ -63,11 +66,15 @@ namespace SimpleAmmoManager
         {
             // Menu Visbility
             if (e.KeyCode == menuToggle && !SAM_UI.pool.AreAnyVisible)
+            {
                 SAM_UI.mainMenu.Visible = !SAM_UI.mainMenu.Visible;
+            }
+                
         }
 
         private void onKeyUp(object sender, KeyEventArgs e)
         {
+
         }
 
         private void onAborted(object sender, EventArgs e)
