@@ -27,9 +27,8 @@ using SimpleAmmoManager.Weapon_Groups;
  * Notes:
  * - Musket is grouped as "Sniper" but occupies the Shotgun slot. [v]
  * - Exiting out of menu with 'Esc' opens in-game menu
- * - Ball under throwables
+ * - Ball under throwables [v]
  * - Feature: Option to delete or drop ammo when choosing 'Empty Ammo'
- * - Feature: Add back button
  * - Feature: Show Ammo Info
  * - Feature: Add All Weapons Menu
  * - Can't set Mk2 ammo

@@ -39,6 +39,7 @@ namespace SimpleAmmoManager.Weapon_Groups
         public NativeItem fullAmmo;
         public NativeItem emptyAmmo;
         public NativeItem setAmmo;
+        public NativeCheckboxItem groupApply;
         public List<NativeItem> items;
         public List<WeaponHash> wHashList = new List<WeaponHash>();
 
@@ -56,7 +57,8 @@ namespace SimpleAmmoManager.Weapon_Groups
             fullAmmo = new NativeItem("Full Ammo");
             emptyAmmo = new NativeItem("Empty Ammo");
             setAmmo = new NativeItem("Set Ammo");
-            items = new List<NativeItem>() { weaponList, fullAmmo, emptyAmmo, setAmmo };
+            groupApply = new NativeCheckboxItem("Apply to Group", false);
+            items = new List<NativeItem>() { weaponList, fullAmmo, emptyAmmo, setAmmo , groupApply};
 
             // Update UI
             SAM_UI.pool.Add(nMenu);
