@@ -51,7 +51,6 @@
   <ItemGroup>
     <Compile Include="BinarySerialization.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="Resources\SAM_TextureDictionary.cs" />
     <Compile Include="SAM_Script.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SAM_UI.cs" />

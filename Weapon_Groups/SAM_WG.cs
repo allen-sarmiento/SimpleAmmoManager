@@ -27,6 +27,7 @@ namespace SimpleAmmoManager.Weapon_Groups
     {
         // Static Members
         public static List<SAM_WG> SAM_WGs = new List<SAM_WG>();
+        public static List<NativeMenu> nMenuList = new List<NativeMenu>();
 
         // Instance Members
         public NativeMenu nMenu;
@@ -35,26 +36,27 @@ namespace SimpleAmmoManager.Weapon_Groups
         private List<string> tempList;
         
         public NativeListItem<string> weaponList;
-        public NativeItem ammo;
         public NativeItem fullAmmo;
         public NativeItem emptyAmmo;
         public NativeItem setAmmo;
-        private List<NativeItem> items;
+        public List<NativeItem> items;
+        public List<WeaponHash> wHashList = new List<WeaponHash>();
 
         public SAM_WG(WeaponGroup wpnGrp, string title)
         {
             SAM_WGs.Add(this); // Update class list
             nMenu = new NativeMenu("Ammo Manager", title); // Set SubMenu
+            nMenuList.Add(this.nMenu); // Update nMenu list
             this.title = title; // Set name
             this.wpnGrp = wpnGrp; // Set weapon group
             tempList = new List<string>();
 
             weaponList = new NativeListItem<string>("Weapon"); // Set list item to empty list
-            ammo = new NativeItem("Ammo");
+            weaponList.ArrowsAlwaysVisible = true;
             fullAmmo = new NativeItem("Full Ammo");
             emptyAmmo = new NativeItem("Empty Ammo");
             setAmmo = new NativeItem("Set Ammo");
-            items = new List<NativeItem>() { weaponList, ammo, fullAmmo, emptyAmmo, setAmmo };
+            items = new List<NativeItem>() { weaponList, fullAmmo, emptyAmmo, setAmmo };
 
             // Update UI
             SAM_UI.pool.Add(nMenu);
@@ -63,9 +65,10 @@ namespace SimpleAmmoManager.Weapon_Groups
                 nMenu.Add(item);
         }
 
-        public void addWeapon(string wHash)
+        public void addWeapon(WeaponHash wHash)
         {
-            tempList.Add(GetDisplayName(wHash));
+            wHashList.Add(wHash);
+            tempList.Add(GetDisplayName(wHash.ToString()));
         }
 
         public static void init()

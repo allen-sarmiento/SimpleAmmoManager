@@ -4,13 +4,23 @@ using GTA.Native;
 using GTA.NaturalMotion;
 using GTA.UI;
 using Screen = GTA.UI.Screen;
+
+using LemonUI;
+using LemonUI.Elements;
+using LemonUI.Extensions;
+using LemonUI.Menus;
+using LemonUI.Scaleform;
+using LemonUI.TimerBars;
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using SimpleAmmoManager.Weapon_Groups;
 
 /**
@@ -18,6 +28,10 @@ using SimpleAmmoManager.Weapon_Groups;
  * - Musket is grouped as "Sniper" but occupies the Shotgun slot. [v]
  * - Exiting out of menu with 'Esc' opens in-game menu
  * - Ball under throwables
+ * - Feature: Option to delete or drop ammo when choosing 'Empty Ammo'
+ * - Feature: Add back button
+ * - Feature: Show Ammo Info
+ * - Feature: Add All Weapons Menu
  */
 
 namespace SimpleAmmoManager
@@ -54,7 +68,7 @@ namespace SimpleAmmoManager
                 SAM_WG.init();
             }
 
-            SAM_UI.update();
+            SAM_UI.listener();
         }
         private void onTick(object sender, EventArgs e)
         {
@@ -65,11 +79,15 @@ namespace SimpleAmmoManager
         private void onKeyDown(object sender, KeyEventArgs e)
         {
             // Menu Visbility
-            if (e.KeyCode == menuToggle && !SAM_UI.pool.AreAnyVisible)
+            if (e.KeyCode == menuToggle)
             {
-                SAM_UI.mainMenu.Visible = !SAM_UI.mainMenu.Visible;
+                if (!SAM_UI.pool.AreAnyVisible)
+                    SAM_UI.mainMenu.Visible = true;
+                else if (SAM_UI.mainMenu.Visible)
+                    SAM_UI.mainMenu.Visible = false;
+                else
+                    SAM_UI.hideSubMenus();
             }
-                
         }
 
         private void onKeyUp(object sender, KeyEventArgs e)
