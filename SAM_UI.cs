@@ -41,7 +41,7 @@ namespace SimpleAmmoManager
         public static SAM_WG sm_swg;
         public static SAM_WG sn_swg;
         public static SAM_WG th_swg;
-        public static NativeMenu aboutMod_sMenu = new NativeMenu("Ammo Manager", "About Mod", "Settings, Author, Version");
+        public static NativeMenu aboutMod_sMenu = new NativeMenu("Ammo Manager", "About Mod", "Author, Version");
 
         // Current SubMenu
         public static NativeItem weapon = new NativeItem("Weapon:", "", "Null");
@@ -51,11 +51,11 @@ namespace SimpleAmmoManager
         public static List<NativeItem> current_sMenu_Items = new List<NativeItem>() { weapon, fullAmmo, emptyAmmo, setAmmo };
 
         // About Mod SubMenu
-        public static NativeMenu settings_sMenu = new NativeMenu("About Mod", "Settings");
+        // public static NativeMenu settings_sMenu = new NativeMenu("About Mod", "Settings");
         public static NativeItem author = new NativeItem("Author:", "", "mathcaicedtea");
         public static NativeItem version = new NativeItem("Version:", "", $"{SAM_Script.VERSION}");
 
-        public static List<NativeMenu> sMenuList = new List<NativeMenu>() { current_sMenu, aboutMod_sMenu, settings_sMenu };
+        public static List<NativeMenu> sMenuList = new List<NativeMenu>() { current_sMenu, aboutMod_sMenu };
 
         public static void initUI()
         {
@@ -125,6 +125,8 @@ namespace SimpleAmmoManager
                         sn_swg.addWeapon(wHash);
                         break;
                     case WeaponGroup.Thrown:
+                        if (wHash == WeaponHash.Ball || wHash == WeaponHash.BZGas) // Skip exception
+                            continue;
                         th_swg.addWeapon(wHash);
                         break;
                     case WeaponGroup.FireExtinguisher:
@@ -139,9 +141,9 @@ namespace SimpleAmmoManager
 
         private static void initAboutMod_sMenu()
         {
-            pool.Add(settings_sMenu);
-            aboutMod_sMenu.AddSubMenu(settings_sMenu);
-            initSettings_sMenu();
+            // pool.Add(settings_sMenu);
+            // aboutMod_sMenu.AddSubMenu(settings_sMenu);
+            // initSettings_sMenu();
 
             aboutMod_sMenu.Add(author);
             aboutMod_sMenu.Add(version);
@@ -188,7 +190,7 @@ namespace SimpleAmmoManager
                 swg.fullAmmo.Activated += (o, e) =>
                 {
                     WeaponHash wHash = swg.wHashList.ElementAt(swg.weaponList.SelectedIndex);
-                    Function.Call(Hash.SET_PED_AMMO, Game.Player.Character, wHash, 99999);
+                    Function.Call(Hash.SET_PED_AMMO, Game.Player.Character, wHash, 9999);
                 };
                 swg.emptyAmmo.Activated += (o, e) =>
                 {
@@ -198,7 +200,7 @@ namespace SimpleAmmoManager
                 swg.setAmmo.Activated += (o, e) =>
                 {
                     WeaponHash wHash = swg.wHashList.ElementAt(swg.weaponList.SelectedIndex);
-                    string input = Game.GetUserInput(WindowTitle.EnterSynopsis, "0", 3);
+                    string input = Game.GetUserInput(WindowTitle.EnterSynopsis, $"{SAM_Script.defaultSetAmmoAmt}", 3);
                     if (Int16.TryParse(input, out short amt))
                     {
                         Function.Call(Hash.SET_PED_AMMO, Game.Player.Character, wHash, amt);
@@ -259,7 +261,7 @@ namespace SimpleAmmoManager
             fullAmmo.Activated += (o, e) =>
             {
                 WeaponHash wHash = Function.Call<WeaponHash>(Hash.GET_SELECTED_PED_WEAPON, Game.Player.Character);
-                Function.Call(Hash.SET_PED_AMMO, Game.Player.Character, wHash, 99999);
+                Function.Call(Hash.SET_PED_AMMO, Game.Player.Character, wHash, 9999);
             };
             emptyAmmo.Activated += (o, e) =>
             {
@@ -269,7 +271,7 @@ namespace SimpleAmmoManager
             setAmmo.Activated += (o, e) =>
             {
                 WeaponHash wHash = Function.Call<WeaponHash>(Hash.GET_SELECTED_PED_WEAPON, Game.Player.Character);
-                string input = Game.GetUserInput(WindowTitle.EnterSynopsis, "0", 3);
+                string input = Game.GetUserInput(WindowTitle.EnterSynopsis, $"{SAM_Script.defaultSetAmmoAmt}", 3);
                 if (Int16.TryParse(input, out short amt))
                 {
                     Function.Call(Hash.SET_PED_AMMO, Game.Player.Character, wHash, amt);

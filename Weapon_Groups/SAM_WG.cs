@@ -67,8 +67,14 @@ namespace SimpleAmmoManager.Weapon_Groups
 
         public void addWeapon(WeaponHash wHash)
         {
+            string str = wHash.ToString();
+            if (str.Contains("Mk2"))
+                return;
             wHashList.Add(wHash);
-            tempList.Add(GetDisplayName(wHash.ToString()));
+            if (wHash == WeaponHash.SmokeGrenade)
+                tempList.Add("Tear Gas");
+            else
+                tempList.Add(GetDisplayName(str));
         }
 
         public static void init()
@@ -98,7 +104,14 @@ namespace SimpleAmmoManager.Weapon_Groups
                         str = str.Insert(i, " ");
                         i++;
                     }
-
+                } else if (Char.IsDigit(str[i]))
+                {
+                    // If preceeded by lower
+                    if (i > 0 && i < str.Length && Char.IsLower(str[i - 1]))
+                    {
+                        str = str.Insert(i, " ");
+                        i++;
+                    }
                 }
             }
             return str;

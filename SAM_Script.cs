@@ -32,6 +32,7 @@ using SimpleAmmoManager.Weapon_Groups;
  * - Feature: Add back button
  * - Feature: Show Ammo Info
  * - Feature: Add All Weapons Menu
+ * - Can't set Mk2 ammo
  */
 
 namespace SimpleAmmoManager
