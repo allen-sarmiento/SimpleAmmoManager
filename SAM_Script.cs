@@ -30,7 +30,7 @@ using SimpleAmmoManager.Weapon_Groups;
  * - Ball under throwables [v]
  * - Feature: Option to delete or drop ammo when choosing 'Empty Ammo'
  * - Feature: Show Ammo Info
- * - Feature: Add All Weapons Menu
+ * - Feature: Add All Weapons Menu [v]
  * - Can't set Mk2 ammo
  */
 
