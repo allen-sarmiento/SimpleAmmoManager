@@ -4,8 +4,9 @@ Simple Ammo Manager is a mod menu for GTAV.
 This is my first mod upload; leave a comment for any bugs or feature suggestions.
 
 <h2>Changelog:</h2>
+<h3>v1.1.0</h3>
 <ul>
-  <li>UI Changes</li>
+  <li>UI Changes (NativeUI > LeemonUI)</li>
   <li>Requirements have changed</li>
   <li>Installation has changed</li>
 </ul>
