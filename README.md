@@ -21,7 +21,7 @@ This is my first mod upload; leave a comment for any bugs or feature suggestions
 
 <h2>Known Bugs:</h2>
 <ul>
-  <li>Can't set Mk2 Ammo</li>
+  <li>Can't edit Mk2 Ammo</li>
 </ul>
 
 <h2>Controls:</h2>
